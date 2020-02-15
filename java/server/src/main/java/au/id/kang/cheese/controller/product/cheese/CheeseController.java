@@ -35,7 +35,7 @@ public class CheeseController implements CRUDController<CheeseDTO> {
 
     @Produces(MediaType.APPLICATION_JSON)
     @Put
-    public CheeseDTO createProduct(CheeseDTO cheeseDTO) {
+    public CheeseDTO createProduct(@Body CheeseDTO cheeseDTO) {
         cheeseRepository.save(mapper.toCheese(cheeseDTO));
         return cheeseDTO;
     }

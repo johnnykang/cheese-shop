@@ -1,6 +1,7 @@
 package au.id.kang.cheese.controller.product;
 
 import au.id.kang.cheese.domain.ProductType;
+import au.id.kang.cheese.dto.product.ProductCollectionDTO;
 import au.id.kang.cheese.dto.product.ProductDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micronaut.http.HttpResponse;
@@ -24,8 +25,8 @@ public class ProductController {
 
     @Produces(MediaType.APPLICATION_JSON)
     @Get("/list")
-    public Optional<List<ProductDTO>> listProducts(@QueryValue("productType") ProductType type) {
-        return productControllers.stream().filter(iProductController -> iProductController.canHandle(type)).findFirst().map(crudController -> crudController.listProducts());
+    public Optional<ProductCollectionDTO> listProducts(@QueryValue("productType") ProductType type) {
+        return productControllers.stream().filter(iProductController -> iProductController.canHandle(type)).findFirst().map(crudController -> crudController.listProducts()).map(list -> new ProductCollectionDTO(list));
     }
 
     @Produces(MediaType.APPLICATION_JSON)

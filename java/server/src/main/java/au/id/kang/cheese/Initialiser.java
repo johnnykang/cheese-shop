@@ -32,10 +32,35 @@ public class Initialiser implements ApplicationEventListener<StartupEvent> {
         cheeseRepository.save(entity);
 
         entity = new Cheese();
-        entity.setName("Cheese 2");
-        entity.setPrice(200d);
-        entity.setColor(Color.YELLOW);
-        entity.setCheeseType("bar");
+        entity.setName("Brie");
+        entity.setPrice(300d);
+        entity.setColor(Color.RED);
+        entity.setCheeseType("Brie");
+        entity.setImage("https://cheese.com/media/img/cheese/Brie_PDCo3RG.jpg");
+        cheeseRepository.save(entity);
+
+        entity = new Cheese();
+        entity.setName("American Cheese");
+        entity.setPrice(500d);
+        entity.setColor(Color.RED);
+        entity.setCheeseType("Unknown");
+        entity.setImage("https://cheese.com/media/img/cheese/503-american_cheese_slice.jpg");
+        cheeseRepository.save(entity);
+
+        entity = new Cheese();
+        entity.setName("Pecorino Romano");
+        entity.setPrice(600d);
+        entity.setColor(Color.RED);
+        entity.setCheeseType("Pecorino");
+        entity.setImage("https://cheese.com/media/img/cheese/Pecorino_romano_cheese.jpg");
+        cheeseRepository.save(entity);
+
+        entity = new Cheese();
+        entity.setName("Cheddar");
+        entity.setPrice(300d);
+        entity.setColor(Color.RED);
+        entity.setCheeseType("Cheddar");
+        entity.setImage("https://cheese.com/media/img/cheese/wiki/cheddar.jpg");
         cheeseRepository.save(entity);
 
 
