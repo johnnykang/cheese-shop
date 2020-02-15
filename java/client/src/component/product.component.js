@@ -29,13 +29,13 @@ class Product extends React.Component {
             weight: this.state['weight']
         });
 
-        this.state['isChecked'] = checked;
+        this.setState({isChecked: checked});
     }
 
     handleWeightEvt(evt) {
         let value = evt;
 
-        this.state['weight'] = evt;
+        this.setState({weight: evt});
 
         this.props.dispatch(productStateChanged(
             this.props.thisproduct.id,
