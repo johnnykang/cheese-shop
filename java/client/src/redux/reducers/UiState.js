@@ -1,11 +1,5 @@
-import {SELECTED_WIDGET, WIDGET_STATE_CHANGED, WIDGET_LANGUAGE_CHANGED, UPDATE_WIDGET_VERSION, WIDGET_AJAX_START, WIDGET_AJAX_END, SELECT_PRODUCT, UNSELECT_PRODUCT, LOAD_PRODUCT_LIST, PRODUCT_CHANGE} from '../actionTypes';
+import {LOAD_PRODUCT_LIST, PRODUCT_CHANGE} from '../actionTypes';
 import produce from 'immer';
-
-const urlParams = new URLSearchParams(window.location.search);
-const siteId = urlParams.get('site_id');
-const lang = urlParams.get('lang');
-const env = urlParams.get('env');
-
 
 export const initialState = {
     entities: {},
