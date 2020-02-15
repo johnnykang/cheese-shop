@@ -58,6 +58,21 @@ public class ProductController {
         return productDTO1.orElseThrow(() -> new RuntimeException("unable to create the new product"));
     }
 
+    @Produces(MediaType.APPLICATION_JSON)
+    @Patch("/{id}")
+    public HttpResponse<ProductDTO> patchProduct(Long id, @Body ProductDTO productDTO, @Body String rawBody) {
+        if (!productDTO.getId().equals(id))
+            return HttpResponse.badRequest();
+        final Optional<ProductDTO> productDTO1 = productControllers.stream().filter(iProductController -> iProductController.canHandle(productDTO.getProductType()))
+                .findFirst().map(iProductController -> iProductController.patchProduct(iProductController.transform(rawBody)));
+
+        if (productDTO1.isPresent()) {
+            return HttpResponse.ok(productDTO1.get());
+        }
+
+        return HttpResponse.badRequest();
+    }
+
     private Link getLink(ProductDTO productDTO) {
         return Link.of(URI.create(String.format("/product/%d", productDTO.getId())));
     }

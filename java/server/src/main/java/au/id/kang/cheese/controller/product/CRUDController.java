@@ -19,4 +19,6 @@ public interface CRUDController<T extends ProductDTO> {
     HttpResponse<T> getProduct(Long id);
 
     List<T> listProducts();
+
+    T patchProduct(T transform);
 }

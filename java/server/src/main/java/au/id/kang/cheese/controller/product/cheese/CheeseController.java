@@ -36,14 +36,20 @@ public class CheeseController implements CRUDController<CheeseDTO> {
     @Produces(MediaType.APPLICATION_JSON)
     @Put
     public CheeseDTO createProduct(@Body CheeseDTO cheeseDTO) {
-        cheeseRepository.save(mapper.toCheese(cheeseDTO));
-        return cheeseDTO;
+        final Cheese save = cheeseRepository.save(mapper.toCheese(cheeseDTO));
+        return mapper.toCheeseDTO(save);
     }
 
     @Override
     public List<CheeseDTO> listProducts() {
         final Iterable<Cheese> all = cheeseRepository.findAll();
         return StreamSupport.stream(all.spliterator(), false).map(cheese -> mapper.toCheeseDTO(cheese)).collect(Collectors.toList());
+    }
+
+    @Override
+    public CheeseDTO patchProduct(CheeseDTO transform) {
+        final Cheese update = cheeseRepository.update(mapper.toCheese(transform));
+        return mapper.toCheeseDTO(update);
     }
 
     @Produces(MediaType.APPLICATION_JSON)
