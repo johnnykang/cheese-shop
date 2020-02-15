@@ -6,7 +6,8 @@ const siteId = urlParams.get('site_id');
 const lang = urlParams.get('lang');
 const env = urlParams.get('env');
 
-const initialState = {
+
+export const initialState = {
     entities: {},
     products: [],
     carts: []

@@ -1,13 +1,12 @@
 import * as React from 'react';
 import {Avatar, Card, Checkbox, Icon, InputNumber} from 'antd';
 import {connect} from 'react-redux';
-import {PRODUCT_CHANGE, SELECT_PRODUCT, UNSELECT_PRODUCT} from '../redux/actionTypes';
+import {PRODUCT_CHANGE, productStateChanged, SELECT_PRODUCT, UNSELECT_PRODUCT} from '../redux/actionTypes';
 
 const gridStyle = {
     width: '25%',
     textAlign: 'center',
 };
-
 
 
 class Product extends React.Component {
@@ -38,13 +37,10 @@ class Product extends React.Component {
 
         this.state['weight'] = evt;
 
-        this.props.dispatch({
-            type: PRODUCT_CHANGE,
-            productId: this.props.thisproduct.id,
-            weight: value,
-            isChecked: this.state['isChecked']
-        })
-
+        this.props.dispatch(productStateChanged(
+            this.props.thisproduct.id,
+            value,
+            this.state['isChecked']));
     }
 
     render() {

@@ -2,11 +2,7 @@ import * as React from 'react';
 import Product from './product.component';
 import {Button, Card, List, Modal} from 'antd';
 import {connect} from 'react-redux';
-import {SERVER_URL} from '../config';
-import {normalize, schema} from 'normalizr';
-import {LOAD_PRODUCT_LIST} from '../redux/actionTypes';
-
-const product_schema = new schema.Entity('product');
+import {fetchProducts} from '../redux/actionTypes';
 
 
 class ProductsComponent extends React.Component {
@@ -23,21 +19,7 @@ class ProductsComponent extends React.Component {
     }
 
     componentDidMount() {
-        fetch(`${SERVER_URL}/${this.serviceName}/list?productType=${this.props.productType}`)
-            .then(r => {
-                return r.json()
-            })
-            .then(message => {
-                let products = normalize(message, {
-                    products: [product_schema]
-                });
-
-                this.props.dispatch({
-                    type: LOAD_PRODUCT_LIST,
-                    payload: products
-                });
-            })
-            .catch(e => console.error(e))
+        this.props.dispatch(fetchProducts(this.serviceName, 'CHEESE'));
     }
 
     handleOk = e => {
