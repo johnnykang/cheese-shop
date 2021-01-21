@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.26.9",
-    "immer": "^5.3.6",
+    "immer": "^8.0.1",
     "node-sass": "^4.13.1",
     "normalizr": "^3.5.0",
     "react": "^16.8.4",
